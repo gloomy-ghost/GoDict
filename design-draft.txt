@@ -1,0 +1,128 @@
+功能需求：
+	1. 当用户在页面选中文本后，点击右键弹出菜单，在菜单中点击“查询”，在工具栏上的图标按钮处弹出页面展示框显示查询结果Panel。
+	2. 当用户在页面选中文本后，直接点击工具栏中的图标按钮，弹出页面展示框显示查询结果。
+
+设计思路：
+功能1:
+	右键菜单项的创建：文字、图标、出现条件（context）
+	点击菜单项触发事件
+	事件响应：获取所选文本－》以所选文本作为input，发起查询请求－》查询结果处理（包括错误处理）－》查询结果展示。
+
+功能2:
+	工具栏按钮的创建：Tooltip文字、图标、
+	点击按钮出发事件
+	事件响应：获取所选文本－》以所选文本作为input，发起查询请求－》查询结果处理（包括错误处理）－》查询结果展示。
+
+
+优化项：
+1.查询结果Panel的样式及弹出位置。
+
+
+怎么获取和展示查询结果？
+取词结果均来源于现有词典网站，如“有道”、“必应”，“爱词霸”等等。
+1. 根据词典网站的查词URL模版直接进行URL访问，然后对返回的页面结果进行裁取，取出查询结果进行样式处理，然后嵌入到Panel的HTML中。
+1. 根据词典网站的提供的开发API，然后将返回的结果进行样式处理并嵌入到Panel的HTML中。
+
+
+
+考虑查不到结果怎么显示。
+
+各模块的时间消耗分析
+
+窗口隐藏时是否清除上次查询结果可以做成配置项
+
+
+右下角显示：查询结果由“有道”提供。（并给予链接）
+
+//
+
+1. fix bug
+2. Git hub
+3. Store
+
+var date = new Date();
+var tm_in = date.getTime();
+var tm_out = date.getTime();
+console.log("Time cost: " + (tm_out));
+console.log("Time cost: " + (tm_in));
+
+
+//YD 
+test
+oridinary
+general
+gerneral
+designers still trying
+hjkhljhkhjljlhjkhl
+fasfasfadfasdf
+fasfas
+Splayed
+last
+elements
+NodeList
+我们(除去链接，还要考虑如果出现了链接如何正确定向而不出现错误页面)
+我不会倒（bing没反应）
+
+//
+1. test:
+<div id="results-contents" class="results-content">
+	<div id="phrsListTab" class="trans-wrapper clearfix">
+		<div class="trans-container">
+			<ul>
+			<p class="additional">
+
+2.oridinary:
+<div id="results-contents" class="results-content">
+	<div class="error-wrapper">
+		<div class="error-typo">(“error-typo”，只显示“typo-rel”,可能有多个typo-rel)
+			<p class="typo-rel">
+	<div class="trans-wrapper" id="phrsListTab">(不需要)
+
+3.designers still trying:
+<div id="results-contents" class="results-content">
+	<div class="error-wrapper" stype="height:30px">
+		<div class="error-note">(不是“error-typo”，直接作为未找到处理)
+		<div id="ydTrans" class="trans-wrapper">(不需要)
+			<div id="fanyiToggle">
+ 				<div class="trans-container">
+ 					<p>designers still trying</p>
+ 					<p class="additional">
+
+4.hjkhljhkhjljlhjkhl:
+<div id="results-contents" class="results-content">
+	<div class="error-wrapper" style="height:400px">
+		<div class="error-note">(不是“error-typo”，直接作为未找到处理)
+
+5.fasfasfadfasdf:
+<div id="results-contents" class="results-content">
+	<div class="error-wrapper" stype="height:30px">
+		<div class="error-note">(不是“error-typo”，直接作为未找到处理)
+	<div id="webSearch" class="trans-wrapper">
+
+
+// iciba
+test:
+<div class="result-info">
+	<div class="info-article info-base">
+		<ul class="base-list switch_part">  ---可能有多个typo-rel,第1个是基本解释
+
+
+
+//========
+Translation
+
+Multi
+
+Easy
+
+Collection
+
+English-Chinese
+
+
+趣查－去查
+
+DictionaryToGo
+
+1.0.0
+

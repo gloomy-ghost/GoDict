@@ -1,0 +1,41 @@
+#result-content li {
+	margin-left: -15px;
+}
+
+#result-content  > ul > li > span.prop {
+  font-size: 16px;
+  text-align: center;
+}
+
+#result-content > ul > li > p {
+  font-size: 16px;
+  padding: 0px;
+	margin: 0px;
+}
+
+#result-content a.shape {
+	margin-left: -5px;
+	font-style: normal;
+}
+
+#result-content .change p {
+	font-size: 14px;
+	font-style: italic;
+}
+
+#result-content .change p span{
+	margin-left: 5px;
+}
+
+#result-content .change .prop.chinese {
+	font-size: 14px;
+}
+
+#result-content li.change {
+	list-style: square;
+	margin-top: 20px;
+}
+
+#result-content .base-word {
+	padding: 15px;
+}
