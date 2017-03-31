@@ -9,17 +9,18 @@ const pageWorkers = require("sdk/page-worker");
  *    The text string to be searched.
  */
 const search = (inputText) => {
-	if(inputText){
-		const searchURL = "http://cn.bing.com/dict/?q=" + inputText + "&qs=n&form=Z9LH5&pq=" + inputText;
-		const scriptFile = data.url("script/dict/page-worker-bing.js");
-		const pageWorker = pageWorkers.Page({
-		  contentURL: searchURL,
-		  contentScriptFile: scriptFile,
-		  contentScriptWhen: "ready"
-		});
-		pageWorker.port.on("onGetResult", function(resultHTML){
-    		mainPanel.updateSearchResult(resultHTML);
-		});
-	}
+    if(inputText){
+        const searchURL = "https://cn.bing.com/dict/?q=" + inputText;
+        const scriptFile = data.url("script/dict/page-worker-bing.js");
+        const pageWorker = pageWorkers.Page({
+            contentURL: searchURL,
+            contentScriptFile: scriptFile,
+            contentScriptWhen: "ready"
+        });
+        pageWorker.port.on("onGetResult", function(resultHTML){
+            mainPanel.updateSearchResult(resultHTML);
+            pageWorker.destroy();
+        });
+    }
 }
 exports.search = search;

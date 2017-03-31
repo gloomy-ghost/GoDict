@@ -5,10 +5,11 @@
           <em:type>2</em:type>
           <em:bootstrap>true</em:bootstrap>
           <em:unpack>false</em:unpack>
-          <em:version>1.0.2</em:version>
+          <em:version>1.0.3</em:version>
           <em:name>趣查 GoDictionary</em:name>
           <em:description>[趣查]提供更简单快速的在线词典查询功能，方便你随时查询单词释义。你可以在页面中选中单词直接查询，也可以直接输入单词进行查询。[趣查]还提供查询多个不同的在线词典（有道词典、必应词典、爱词霸词典），方便你对比查询结果或选择自己最中意的在线词典。[趣查]目前支持中英互译。试一下，肯定能帮到你！(｡◝‿◜｡)</em:description>
           <em:creator>Eric Zhou</em:creator>
+          <em:multiprocessCompatible>true</em:multiprocessCompatible>
 
           <em:targetApplication>
             <Description>

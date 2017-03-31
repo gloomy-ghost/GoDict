@@ -3,7 +3,7 @@
 let result = "";
 
 do {
-	const resultInfos = document.getElementsByClassName("result-info");
+	const resultInfos = document.getElementsByClassName("container-left");
 	if(resultInfos.length < 1)
 		break;
 

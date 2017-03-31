@@ -9,17 +9,18 @@ const pageWorkers = require("sdk/page-worker");
  *    The text string to be searched.
  */
 const search = (inputText) => {
-	if(inputText){
-		const searchURL = "http://dict.youdao.com/search?le=eng&q=" + inputText +"&keyfrom=dict.top";
-		const scriptFile = data.url("script/dict/page-worker-youdao.js");
-		const pageWorker = pageWorkers.Page({
-		  contentURL: searchURL,
-		  contentScriptFile: scriptFile,
-		  contentScriptWhen: "ready"
-		});
-		pageWorker.port.on("onGetResult", function(resultHTML){
-    		mainPanel.updateSearchResult(resultHTML);
-		});
-	}
+    if(inputText){
+        const searchURL = "https://dict.youdao.com/search?le=eng&q=" + inputText +"&keyfrom=dict.top";
+        const scriptFile = data.url("script/dict/page-worker-youdao.js");
+        const pageWorker = pageWorkers.Page({
+            contentURL: searchURL,
+            contentScriptFile: scriptFile,
+            contentScriptWhen: "ready"
+        });
+        pageWorker.port.on("onGetResult", function(resultHTML){
+            mainPanel.updateSearchResult(resultHTML);
+            pageWorker.destroy();
+        });
+    }
 }
 exports.search = search;
