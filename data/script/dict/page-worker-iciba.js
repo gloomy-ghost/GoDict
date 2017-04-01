@@ -3,17 +3,13 @@
 let result = "";
 
 do {
-	const resultInfos = document.getElementsByClassName("container-left");
-	if(resultInfos.length < 1)
+	const infoArticles = document.getElementsByClassName("info-article info-base")[0];
+	if(infoArticles === undefined)
 		break;
 
-	const infoArticles = resultInfos[0].getElementsByClassName("info-article info-base");
-	if(infoArticles.length < 1)
-		break;
-
-	const baseLists = infoArticles[0].getElementsByClassName("base-list switch_part");
-	if(baseLists.length > 0)
-		result = baseLists[0].outerHTML;
+	const baseLists = infoArticles.getElementsByClassName("base-list switch_part")[0];
+	if(baseLists)
+		result = baseLists.outerHTML;
 } while(0); // User "do{} while(0)" to mimic the "goto".
 
 self.port.emit("onGetResult", result);
