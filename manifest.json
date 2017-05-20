@@ -11,7 +11,7 @@
     "contextMenus",
     "https://fanyi.youdao.com/openapi.do",
     "http://dict-co.iciba.com/api/dictionary.php",
-    "https://xtk.azurewebsites.net/BingService.aspx"
+    "https://xtk.azurewebsites.net/BingDictService.aspx"
   ],
   "background": {
     "scripts": [

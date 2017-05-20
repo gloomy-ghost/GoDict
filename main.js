@@ -46,26 +46,25 @@ const searchDict = {
   },
 
   'bing': function bing(query, sendResponse) {
-    const url = 'https://xtk.azurewebsites.net/BingService.aspx',
+    const url = 'https://xtk.azurewebsites.net/BingDictService.aspx?Word=',
       request = new XMLHttpRequest();
 
-    request.open('POST', url, true);
-    request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+    request.open('GET', url+query, true);
     request.onload = function () {
       if (this.status >= 200 && this.status < 400) {
         const data = JSON.parse(this.response);
         let result = [];
-        let i = 0;
-        while (++i){
-          if (data['pos'+i])
-            result.push(data['pos'+i] + ' ' + data['mn'+i]);
-          else
-            break;
+        try {
+          for (const def of data['defs'])
+            result.push(def.pos + ' ' + def.def);
+        }
+        catch (TypeError) {
+          sendResponse({ error: 'APIError' });
         }
         sendResponse({ data: result });
       }
     };
-    request.send('Action=search&Format=jsonwv&Word=' + query);
+    request.send();
   },
 }
 
