@@ -88,7 +88,8 @@ browser.runtime.onMessage.addListener(
         break;
       case 'changeSearch':
         localStorage['search'] = message.data;
-      default:
+        break;
+      case 'search':
         last = message.data;
         searchDict[localStorage.search](message.data, sendResponse);
         return true;
