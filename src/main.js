@@ -80,6 +80,9 @@ browser.contextMenus.onClicked.addListener(
 browser.runtime.onMessage.addListener(
   (message, sender, sendResponse) => {
       switch (message.action) {
+      case 'clearLast':
+          last = '';
+          break;
       case 'getLast':
           sendResponse(last);
           break;
