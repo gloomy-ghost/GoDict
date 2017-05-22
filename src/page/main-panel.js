@@ -1,3 +1,5 @@
+'use strict';
+import { debounce } from 'lodash';
 const inputText = document.getElementById('text-box'),
     goSearchButton = document.getElementById('go-search-btn'),
     result = document.getElementById('result-content'),
@@ -10,11 +12,12 @@ const inputText = document.getElementById('text-box'),
 window.onload = () => {
     browser.runtime.sendMessage({ action: 'getSearch' })
         .then((search) => {
-            dictIcon.style.backgroundImage = 'url("ico/favicon-' + search +'.ico")';
+            dictIcon.style.backgroundImage = `url("ico/favicon-${search}.ico")`;
         });
     browser.runtime.sendMessage({ action: 'getLast' })
         .then((last) => {
             inputText.value = last;
+            inputText.select();
             doSearch();
         });
 };
@@ -74,10 +77,10 @@ const doSearch = () => {
                     showFoundResult(resultJSON['data']);
                 else
                     showNotFoundResult();
-                inputText.select();
             });
     }
     else {
+        browser.runtime.sendMessage({ action: 'clearLast' });
         warnEmptyInput();
     }
 };
@@ -103,29 +106,16 @@ const showFoundResult = (resultJSON) => {
     result.appendChild(resultUL);
 };
 
-listItemYoudao.onclick = () => {
-    dictIcon.style.backgroundImage = 'url("ico/favicon-youdao.ico")';
-    browser.runtime.sendMessage({ action: 'changeSearch', data: 'youdao' });
+function onChangeDict(){
+    dictIcon.style.backgroundImage = `url("ico/favicon-${this.id}.ico")`;
+    browser.runtime.sendMessage({ action: 'changeSearch', data: this.id });
     doSearch();
-};
+}
+listItemYoudao.onclick = onChangeDict;
+listItemBing.onclick = onChangeDict;
+listItemIciba.onclick = onChangeDict;
 
-listItemBing.onclick = () => {
-    dictIcon.style.backgroundImage = 'url("ico/favicon-bing.ico")';
-    browser.runtime.sendMessage({ action: 'changeSearch', data: 'bing' });
-    doSearch();
-};
 
-listItemIciba.onclick = () => {
-    dictIcon.style.backgroundImage = 'url("ico/favicon-iciba.ico")';
-    browser.runtime.sendMessage({ action: 'changeSearch', data: 'iciba' });
-    doSearch();
-};
+inputText.onkeyup = debounce(doSearch, 500);
 
-inputText.onkeyup = function (event) {
-    if (event.keyCode == 13) // If "Enter" key.
-        doSearch();
-};
-
-goSearchButton.onclick = () => {
-    doSearch();
-};
+goSearchButton.onclick = doSearch;

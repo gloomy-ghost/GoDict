@@ -77,7 +77,7 @@ a {
     flex: 0 0 auto;
     padding: 3px 0px 2px;
     background-color:#FFF;
-    background-image: url("search-btn-gray.png");
+    background-image: url("ico/search-btn-gray.png");
     background-repeat: no-repeat;
     background-position: center center;
     border-radius: 0px 4px 4px 0px;
@@ -89,7 +89,7 @@ a {
 }
 #go-search-btn:hover {
     background-color: #F5F5F5;
-    background-image: url("search-btn.png");
+    background-image: url("ico/search-btn.png");
     background-repeat: no-repeat;
     background-position: center center;
     cursor: pointer;
