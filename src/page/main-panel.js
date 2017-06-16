@@ -85,10 +85,15 @@ const doSearch = () => {
     }
 };
 
-const showNotFoundResult = () => {
+const errorMessages = {
+    'APIError': '抱歉，未找到相匹配的结果',
+    'TOOLONG': '长度超过限制啦(*/ω＼*)'
+};
+
+const showNotFoundResult = (id) => {
     let elem = document.createElement('h4');
     elem.setAttribute('id', 'error');
-    elem.appendChild(document.createTextNode('抱歉，未找到相匹配的结果'));
+    elem.appendChild(document.createTextNode(errorMessages[id]));
     elem.appendChild(document.createElement('br'));
     elem.appendChild(document.createTextNode('请试试其他词典吧～'));
     clearResultContent();

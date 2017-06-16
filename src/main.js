@@ -7,18 +7,23 @@ browser.contextMenus.create({
 
 const searchDict = {
     'youdao': function youdao(query, sendResponse) {
-        const url = 'https://fanyi.youdao.com/openapi.do?keyfrom=GoDict-WE&key=275097059&type=data&doctype=json&version=1.1&only=dict&q=',
+        if (query.length > 400) {
+            sendResponse({ error: 'TOOLONG' });
+            return;
+        }
+
+        const url = 'https://fanyi.youdao.com/openapi.do?keyfrom=GoDict-WE&key=275097059&type=data&doctype=json&version=1.1&q=',
             request = new XMLHttpRequest();
         request.open('GET', url + query, true);
         request.onload = function () {
             if (this.status >= 200 && this.status < 400) {
                 const data = JSON.parse(this.response);
-                try {
+                if (typeof data['basic'] === 'object')
                     sendResponse({ data: data['basic']['explains'] });
-                }
-                catch (TypeError) {
+                else if (typeof data['translation'] === 'object')
+                    sendResponse({ data: data['translation'] });
+                else
                     sendResponse({ error: 'APIError' });
-                }
             }
         };
         request.send();
